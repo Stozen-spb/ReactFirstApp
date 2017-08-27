@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>React my first app</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<section class=left-column>
+		
+		<div class="BMR-calculator" id="BMRcalculator">
+			<div class="right-column">
+			<div class="current-day">
+			<b class="current-day-title"> Текущий день</b>
+				<form action="#echo" name="currentDay">
+					<div class="add-items-to-day">
+						<div class="left">
+							<label for=""> Что скушал: </label>
+							<input type="text" name="foodname">
+							<label for=""> Ккал:</label>
+							<input type="text" name="foodCcal">
+						</div>
+						<div class="right">
+							<button class="add-item" type="button" name="addItem"> Ням! </button>
+							<input class="submit-day" type="submit" value="Завершить день" name="SubmitDay">
+							
+							
+						</div>
+						
+						
+					</div>	
+				</form>
+				<div class="day-diagram-container">
+					<div class="left">
+					<p class="foodlist-title">Скушано сегодня</p>
+						<ol class="foodlist">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ol>	
+					</div>
+					<div class="right">
+						<div class="day-diagram BMR-diagram">1250</div>
+						<div class=" day-diagram current-ccal">850</div>
+						
+					</div>	
+				</div>
+			</div>
+			<div class="finished-days">
+				<div class="finished-day">
+					<p class="day-count"> День: 2 </p>
+					<p class="BMR-norm"> Норма: 1250 </p>
+					<p class="eaten"> Скушано: 1200 </p>
+					<p class="difference"> Разница: -50 </p>
+				</div>
+
+			</div>
+		</div> <!-- right-column end -->
+		</div>
+	</section>
+
+	
+	<script src="bundle.js"></script>	
+</body>
+</html>
