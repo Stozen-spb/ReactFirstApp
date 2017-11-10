@@ -4,13 +4,11 @@ export default class BMRcalculator extends React.Component {
 	_calcBMR(event) {
 		event.preventDefault();
 		
-		var activityCheckboxes = document.getElementsByName('activityLevel'), genderBMR;
-		
-		for (var i = 0; i < activityCheckboxes.length; i++) {
-			if (activityCheckboxes[i].checked)
-			var activityLevel =	activityCheckboxes[i].value; 
+		var  genderBMR;
+		var activityLevel = document.querySelector('input[name=activityLevel]:checked').value;
 
-		}
+			
+
 		 if (this._genderM.checked)  genderBMR =  88.36 + (13.4 * this._mass.value) + (4.8 * this._height.value) - (5.7 * this._age.value);
 		 else  genderBMR = 447.6 + (9.2 * this._mass.value) + (3.1 * this._height.value) - (4.3 * this._age.value);
 		 var finalBMR = activityLevel * genderBMR;

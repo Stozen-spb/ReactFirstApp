@@ -22564,12 +22564,9 @@ var BMRcalculator = function (_React$Component) {
 		value: function _calcBMR(event) {
 			event.preventDefault();
 
-			var activityCheckboxes = document.getElementsByName('activityLevel'),
-			    genderBMR;
+			var genderBMR;
+			var activityLevel = document.querySelector('input[name=activityLevel]:checked').value;
 
-			for (var i = 0; i < activityCheckboxes.length; i++) {
-				if (activityCheckboxes[i].checked) var activityLevel = activityCheckboxes[i].value;
-			}
 			if (this._genderM.checked) genderBMR = 88.36 + 13.4 * this._mass.value + 4.8 * this._height.value - 5.7 * this._age.value;else genderBMR = 447.6 + 9.2 * this._mass.value + 3.1 * this._height.value - 4.3 * this._age.value;
 			var finalBMR = activityLevel * genderBMR;
 
@@ -22987,7 +22984,7 @@ exports.default = RightColumn;
 
 
 Object.defineProperty(exports, "__esModule", {
-			value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -23009,31 +23006,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var RightColumnDaysList = function (_React$Component) {
-			_inherits(RightColumnDaysList, _React$Component);
+	_inherits(RightColumnDaysList, _React$Component);
 
-			function RightColumnDaysList() {
-						_classCallCheck(this, RightColumnDaysList);
+	function RightColumnDaysList() {
+		_classCallCheck(this, RightColumnDaysList);
 
-						return _possibleConstructorReturn(this, (RightColumnDaysList.__proto__ || Object.getPrototypeOf(RightColumnDaysList)).apply(this, arguments));
-			}
+		return _possibleConstructorReturn(this, (RightColumnDaysList.__proto__ || Object.getPrototypeOf(RightColumnDaysList)).apply(this, arguments));
+	}
 
-			_createClass(RightColumnDaysList, [{
-						key: 'render',
-						value: function render() {
+	_createClass(RightColumnDaysList, [{
+		key: 'render',
+		value: function render() {
 
-									var days = this.props.days;
+			var days = this.props.days;
 
-									return _react2.default.createElement(
-												'div',
-												{ className: 'finished-days' },
-												days.map(function (days, index) {
-															return _react2.default.createElement(_DayItem2.default, { key: index, date: days.date, bmr: days.bmr, dayEaten: days.summa });
-												})
-									);
-						}
-			}]);
+			return _react2.default.createElement(
+				'div',
+				{ className: 'finished-days' },
+				days.map(function (days, index) {
+					return _react2.default.createElement(_DayItem2.default, { key: index, date: days.date, bmr: days.bmr, dayEaten: days.summa });
+				})
+			);
+		}
+	}]);
 
-			return RightColumnDaysList;
+	return RightColumnDaysList;
 }(_react2.default.Component);
 
 exports.default = RightColumnDaysList;
