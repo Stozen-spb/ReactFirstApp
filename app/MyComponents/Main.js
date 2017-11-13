@@ -1,8 +1,13 @@
+// Basal metabolic rate calculator and daily food ccal counter by Alexander Kurkin
+
+
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BMRInfo from './BMRInfo.js';
-import BMRcalculator from './BMRcalculator.js';
-import RightColumn from './RightColumn.js';
+import BMRInfo from './BMRInfo.js'; // this component only show current BMR
+import BMRcalculator from './BMRcalculator.js'; // Calculator body
+import RightColumn from './RightColumn.js'; // current day ccal counter and days list
 
 
 
@@ -45,9 +50,3 @@ ReactDOM.render (
 
 	)
 
-// ReactDOM.render (
-// 	<BMRInfo />, document.getElementById('yourBMRBigInfo')
-
-// )
-
-//BMRInfo.setState({currentBMR:calcedBMR});

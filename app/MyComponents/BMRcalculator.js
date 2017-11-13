@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class BMRcalculator extends React.Component {
+
+	//Calculation of Basal metabolic rate 
 	_calcBMR(event) {
 		event.preventDefault();
 		
@@ -15,11 +17,53 @@ export default class BMRcalculator extends React.Component {
 		 
 		 return  this.props.callbackFromParent( Math.round(finalBMR) );
 	}
+	// age validation
+	_validateAge(event) {
+
+		event.preventDefault();
+		if ( !(this._age.value.match(/^\d{1,}$/)) ) 
+		{
+			this._age.classList.add('invalid-class');
+		}
+		else {
+			this._age.classList.remove('invalid-class');
+			this._age.classList.add('valid-class');
+			}
+
+	}
+	// height validation
+	_validateHeight(event) {
+
+		event.preventDefault();
+		if ( !(this._height.value.match(/^\d{1,}$/)) ) 
+		{
+			this._height.classList.add('invalid-class');
+		}
+		else {
+			this._height.classList.remove('invalid-class');
+			this._height.classList.add('valid-class');
+			}
+
+	}
+	// mass validation
+		_validateMass(event) {
+
+		event.preventDefault();
+		if ( !(this._mass.value.match(/^\d{1,}$/)) ) 
+		{
+			this._mass.classList.add('invalid-class');
+		}
+		else {
+			this._mass.classList.remove('invalid-class');
+			this._mass.classList.add('valid-class');
+			}
+
+	}
 
 	render() {
 		return ( 
 			<div>
-				<button type='button' className="calc-current-BMR">Рассчитать вашу норму</button>
+				<div  className="calc-current-BMR">Рассчитать вашу норму</div>
 				<div className="BMR-calculator-body">
 					<form  name='BMR' className="BMR-calculator-form" onSubmit={ this._calcBMR.bind(this) }>
 						<fieldset className="gender">
@@ -32,11 +76,11 @@ export default class BMRcalculator extends React.Component {
 						<fieldset className="bio">
 							<legend> БИО </legend>
 
-							<label> <span>Возраст</span> <input type="text" name='age' defaultValue="25" ref={ input => this._age = input} /></label>
+							<label> <span>Возраст</span> <input type="text" name='age' defaultValue="25" onBlur={ this._validateAge.bind(this) } ref={ input => this._age = input} /></label>
 
-							<label> <span>Рост, см</span><input type="text" name='height' defaultValue="170" ref={ input => this._height = input} /></label>
+							<label> <span>Рост, см</span><input type="text" name='height' defaultValue="170" onBlur={ this._validateHeight.bind(this) } ref={ input => this._height = input} /></label>
 
-							<label> <span>Вес, кг</span><input type="text" name='weight' defaultValue="69" ref={ input => this._mass = input} /></label>
+							<label> <span>Вес, кг</span><input type="text" name='weight' defaultValue="69" onBlur={ this._validateMass.bind(this) }  ref={ input => this._mass = input} /></label>
 
 						</fieldset>
 						<fieldset className="activity-level">
@@ -66,4 +110,3 @@ export default class BMRcalculator extends React.Component {
 }
 
 
-// this.props.callbackFromParent(5000);

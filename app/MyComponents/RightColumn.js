@@ -1,5 +1,5 @@
 import React from 'react';
-import RightColumnDaysList from './RightColumnDaysList.js';
+import RightColumnDaysList from './RightColumnDaysList.js'; // List of previous days
 
 
 
@@ -70,12 +70,16 @@ export default class RightColumn extends React.Component {
 			};
 			if ( this._eatenItem.value == '' || this._eatenItemCcal.value == '' )
 				return false;
+			// тк нельзя пушить в стейт превращаем его в массив, добавляем в конец массива объект(название продукта и его калорийность)
+			// и затем присваиваем стейту этот массив
 			let arrayvar = this.state.currentDayFood.slice();
 			arrayvar.push(eatenObject);
 			this.setState({ currentDayFood: arrayvar });
 			 this.SummOfCcal += + this._eatenItemCcal.value;
 			 this._eatenItem.value = '';
 			 this._eatenItemCcal.value = '';
+			 this._eatenItemCcal.classList.remove('invalid-class');
+			 this._eatenItemCcal.classList.remove('valid-class');
 		}
 
 		submitDay(event) {
@@ -101,9 +105,25 @@ export default class RightColumn extends React.Component {
 
 		}
 
+		validateCcal(event) {
+			if ( !(this._eatenItemCcal.value.match(/^\d{1,}$/)) )
+				{
+					this._eatenItemCcal.classList.add('invalid-class');
+					this._nyamButton.disabled = true;
+				}
+			else {
+				this._nyamButton.disabled = false;
+				this._eatenItemCcal.classList.remove('invalid-class');
+				this._eatenItemCcal.classList.add('valid-class');
+
+			}	
+		}
+
 
 
 	render() {
+
+		// current day ccal progress bar
 		var normaStyle =getComputedStyle( document.querySelector('.BMR-diagram') );
 		var normaWidth = Math.round ( parseInt(normaStyle.width) );
 		var skushanoZaDen= document.querySelector('.current-ccal');
@@ -131,10 +151,10 @@ export default class RightColumn extends React.Component {
 							<label htmlFor=""> Что скушал: </label>
 							<input type="text" name="foodname" ref={ input => this._eatenItem = input}/>
 							<label htmlFor=""> Ккал:</label>
-							<input type="text" name="foodCcal" ref={ input => this._eatenItemCcal = input}/>
+							<input type="text" name="foodCcal" onBlur={ this.validateCcal.bind(this) } ref={ input => this._eatenItemCcal = input}/>
 						</div>
 						<div className="right">
-							<button onClick={this.eatFood.bind(this)} className="add-item" type="button" name="addItem"> Ням! </button>
+							<button onClick={this.eatFood.bind(this)} className="add-item" type="button" name="addItem" ref={ button => this._nyamButton = button}> Ням! </button>
 							<input onClick= {this.submitDay.bind(this)} className="submit-day" type="submit" value="Завершить день" name="SubmitDay"/>
 							
 							

@@ -76,15 +76,18 @@ body {
 }
 .calc-current-BMR {
   display: block;
-  width: 280px;
+  width: 100%;
   margin: 0 auto;
   padding: 10px 20px;
-  border-radius: 15px;
   background-color: #729ee5;
   font-size: 18px;
   font-weight: 700;
   border: 2px solid black;
   margin-bottom: 20px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .BMR-calculator-body {
   width: 100%;
@@ -387,4 +390,12 @@ input.submit-day {
 }
 .finished-day:nth-child(3n) {
   margin-right: 0;
+}
+input.valid-class {
+  border: 2px solid green;
+  background: #fff url(../img/ok.png) no-repeat 97% center;
+}
+input.invalid-class {
+  border: 2px solid red;
+  background: #fff url(../img/cancel.png) no-repeat 97% center;
 }

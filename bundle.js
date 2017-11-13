@@ -9778,7 +9778,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Basal metabolic rate calculator and daily food ccal counter by Alexander Kurkin
+
+
+// this component only show current BMR
+// Calculator body
+
+
+// current day ccal counter and days list
+
 
 var MainComponent = function (_React$Component) {
 	_inherits(MainComponent, _React$Component);
@@ -9820,13 +9828,6 @@ var MainComponent = function (_React$Component) {
 }(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(MainComponent, null), document.getElementById('BMRcalculator'));
-
-// ReactDOM.render (
-// 	<BMRInfo />, document.getElementById('yourBMRBigInfo')
-
-// )
-
-//BMRInfo.setState({currentBMR:calcedBMR});
 
 /***/ }),
 /* 83 */
@@ -22561,6 +22562,9 @@ var BMRcalculator = function (_React$Component) {
 
 	_createClass(BMRcalculator, [{
 		key: '_calcBMR',
+
+
+		//Calculation of Basal metabolic rate 
 		value: function _calcBMR(event) {
 			event.preventDefault();
 
@@ -22572,6 +22576,48 @@ var BMRcalculator = function (_React$Component) {
 
 			return this.props.callbackFromParent(Math.round(finalBMR));
 		}
+		// age validation
+
+	}, {
+		key: '_validateAge',
+		value: function _validateAge(event) {
+
+			event.preventDefault();
+			if (!this._age.value.match(/^\d{1,}$/)) {
+				this._age.classList.add('invalid-class');
+			} else {
+				this._age.classList.remove('invalid-class');
+				this._age.classList.add('valid-class');
+			}
+		}
+		// height validation
+
+	}, {
+		key: '_validateHeight',
+		value: function _validateHeight(event) {
+
+			event.preventDefault();
+			if (!this._height.value.match(/^\d{1,}$/)) {
+				this._height.classList.add('invalid-class');
+			} else {
+				this._height.classList.remove('invalid-class');
+				this._height.classList.add('valid-class');
+			}
+		}
+		// mass validation
+
+	}, {
+		key: '_validateMass',
+		value: function _validateMass(event) {
+
+			event.preventDefault();
+			if (!this._mass.value.match(/^\d{1,}$/)) {
+				this._mass.classList.add('invalid-class');
+			} else {
+				this._mass.classList.remove('invalid-class');
+				this._mass.classList.add('valid-class');
+			}
+		}
 	}, {
 		key: 'render',
 		value: function render() {
@@ -22581,8 +22627,8 @@ var BMRcalculator = function (_React$Component) {
 				'div',
 				null,
 				_react2.default.createElement(
-					'button',
-					{ type: 'button', className: 'calc-current-BMR' },
+					'div',
+					{ className: 'calc-current-BMR' },
 					'\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C \u0432\u0430\u0448\u0443 \u043D\u043E\u0440\u043C\u0443'
 				),
 				_react2.default.createElement(
@@ -22634,7 +22680,7 @@ var BMRcalculator = function (_React$Component) {
 									'\u0412\u043E\u0437\u0440\u0430\u0441\u0442'
 								),
 								' ',
-								_react2.default.createElement('input', { type: 'text', name: 'age', defaultValue: '25', ref: function ref(input) {
+								_react2.default.createElement('input', { type: 'text', name: 'age', defaultValue: '25', onBlur: this._validateAge.bind(this), ref: function ref(input) {
 										return _this2._age = input;
 									} })
 							),
@@ -22647,7 +22693,7 @@ var BMRcalculator = function (_React$Component) {
 									null,
 									'\u0420\u043E\u0441\u0442, \u0441\u043C'
 								),
-								_react2.default.createElement('input', { type: 'text', name: 'height', defaultValue: '170', ref: function ref(input) {
+								_react2.default.createElement('input', { type: 'text', name: 'height', defaultValue: '170', onBlur: this._validateHeight.bind(this), ref: function ref(input) {
 										return _this2._height = input;
 									} })
 							),
@@ -22660,7 +22706,7 @@ var BMRcalculator = function (_React$Component) {
 									null,
 									'\u0412\u0435\u0441, \u043A\u0433'
 								),
-								_react2.default.createElement('input', { type: 'text', name: 'weight', defaultValue: '69', ref: function ref(input) {
+								_react2.default.createElement('input', { type: 'text', name: 'weight', defaultValue: '69', onBlur: this._validateMass.bind(this), ref: function ref(input) {
 										return _this2._mass = input;
 									} })
 							)
@@ -22721,9 +22767,6 @@ var BMRcalculator = function (_React$Component) {
 	return BMRcalculator;
 }(_react2.default.Component);
 
-// this.props.callbackFromParent(5000);
-
-
 exports.default = BMRcalculator;
 
 /***/ }),
@@ -22754,6 +22797,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// List of previous days
+
 
 var RightColumn = function (_React$Component) {
 	_inherits(RightColumn, _React$Component);
@@ -22817,12 +22863,16 @@ var RightColumn = function (_React$Component) {
 				ccal: this._eatenItemCcal.value
 			};
 			if (this._eatenItem.value == '' || this._eatenItemCcal.value == '') return false;
+			// тк нельзя пушить в стейт превращаем его в массив, добавляем в конец массива объект(название продукта и его калорийность)
+			// и затем присваиваем стейту этот массив
 			var arrayvar = this.state.currentDayFood.slice();
 			arrayvar.push(eatenObject);
 			this.setState({ currentDayFood: arrayvar });
 			this.SummOfCcal += +this._eatenItemCcal.value;
 			this._eatenItem.value = '';
 			this._eatenItemCcal.value = '';
+			this._eatenItemCcal.classList.remove('invalid-class');
+			this._eatenItemCcal.classList.remove('valid-class');
 		}
 	}, {
 		key: 'submitDay',
@@ -22846,10 +22896,23 @@ var RightColumn = function (_React$Component) {
 			this.SummOfCcal = 0;
 		}
 	}, {
+		key: 'validateCcal',
+		value: function validateCcal(event) {
+			if (!this._eatenItemCcal.value.match(/^\d{1,}$/)) {
+				this._eatenItemCcal.classList.add('invalid-class');
+				this._nyamButton.disabled = true;
+			} else {
+				this._nyamButton.disabled = false;
+				this._eatenItemCcal.classList.remove('invalid-class');
+				this._eatenItemCcal.classList.add('valid-class');
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
 
+			// current day ccal progress bar
 			var normaStyle = getComputedStyle(document.querySelector('.BMR-diagram'));
 			var normaWidth = Math.round(parseInt(normaStyle.width));
 			var skushanoZaDen = document.querySelector('.current-ccal');
@@ -22895,7 +22958,7 @@ var RightColumn = function (_React$Component) {
 									{ htmlFor: '' },
 									' \u041A\u043A\u0430\u043B:'
 								),
-								_react2.default.createElement('input', { type: 'text', name: 'foodCcal', ref: function ref(input) {
+								_react2.default.createElement('input', { type: 'text', name: 'foodCcal', onBlur: this.validateCcal.bind(this), ref: function ref(input) {
 										return _this2._eatenItemCcal = input;
 									} })
 							),
@@ -22904,7 +22967,9 @@ var RightColumn = function (_React$Component) {
 								{ className: 'right' },
 								_react2.default.createElement(
 									'button',
-									{ onClick: this.eatFood.bind(this), className: 'add-item', type: 'button', name: 'addItem' },
+									{ onClick: this.eatFood.bind(this), className: 'add-item', type: 'button', name: 'addItem', ref: function ref(button) {
+											return _this2._nyamButton = button;
+										} },
 									' \u041D\u044F\u043C! '
 								),
 								_react2.default.createElement('input', { onClick: this.submitDay.bind(this), className: 'submit-day', type: 'submit', value: '\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C \u0434\u0435\u043D\u044C', name: 'SubmitDay' })
